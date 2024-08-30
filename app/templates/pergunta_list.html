@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Perguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f9f0; /* Fundo verde muito claro */
+            color: #333;
+        }
+        h1 {
+            background-color: #004d00; /* Verde escuro */
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+            font-size: 2em;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .nav-links {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #006400; /* Verde mais claro */
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            background-color: #004d00; /* Verde escuro */
+        }
+        a {
+            text-decoration: none;
+            color: #004d00; /* Verde escuro */
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        a:hover {
+            background-color: #006400; /* Verde mais claro */
+            color: #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #eaf9e8; /* Verde muito claro */
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #e1f5e8; /* Verde muito claro ao passar o mouse */
+        }
+        .actions a {
+            font-size: 14px;
+            margin-left: 5px;
+            padding: 5px 10px;
+            color: #006400; /* Verde mais claro */
+            border: 1px solid #006400;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .actions a:hover {
+            background-color: #004d00; /* Verde escuro */
+            color: #fff;
+        }
+        .actions .delete-link {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+        .actions .delete-link:hover {
+            background-color: #dc3545;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Perguntas</h1>
+    <div class="container">
+        <div class="nav-links">
+            <span class="admin-icon"><a href="{% url 'admin:index' %}" title="Administração"><i class="fas fa-cogs"></i> Administração</a></span> <!-- Link para o menu admin -->
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Texto</th>
+                    <th>Pontuação</th>
+                    <th>Quiz</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pergunta in perguntas %}
+                <tr>
+                    <td>{{ pergunta.id }}</td>
+                    <td>{{ pergunta.texto }}</td>
+                    <td>{{ pergunta.pontuacao }}</td>
+                    <td>{{ pergunta.quiz }}</td>
+                    <td class="actions">
+                        
+                        <a href="{% url 'pergunta_delete' pergunta.id %}" class="delete-link" onclick="return confirmDelete();">Excluir</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Nenhuma pergunta encontrada.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // Função para confirmar a exclusão de um item
+        function confirmDelete() {
+            return confirm('Tem certeza de que deseja deletar esta pergunta?');
+        }
+    </script>
+</body>
+</html>
