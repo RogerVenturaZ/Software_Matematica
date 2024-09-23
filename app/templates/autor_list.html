@@ -12,7 +12,6 @@
             background-color: #f4f4f4;
         }
         h1 {
-            background-color: #2e8b57; /* Verde escuro */
             color: #fff;
             padding: 20px;
             margin: 0;
@@ -69,36 +68,27 @@
     </style>
 </head>
 <body>
+    {% include 'header.html' %}
     <h1>Lista de Autores</h1>
     <div class="container">
-        <span class="admin-icon"><a href="{% url 'admin:index' %}" title="Administração"><i class="fas fa-cogs"></i> Administração</a></span>
+        <span class="admin-icon"><a href="{% url 'admin:index' %}" title="Administração"><i class="fas fa-cogs"></i> Adicionar Autor</a></span>
         <table>
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th></th> <!-- Coluna de deletar sem rótulo -->
+                    <th colspan=2>Opções</th> <!-- Coluna de deletar sem rótulo -->
                 </tr>
             </thead>
             <tbody>
                 {% for autor in autores %}
                     <tr>
                         <td><a href="{% url 'autor_detail' autor.pk %}">{{ autor.nome }}</a></td>
+                        <td><a href="{% url 'autor_update' autor.pk %}">Editar</a></td>
                         <td><a href="{% url 'autor_delete' autor.pk %}">Deletar</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('a[href*="delete"]').forEach(link => {
-                link.addEventListener('click', event => {
-                    if (!confirm('Tem certeza de que deseja deletar este item?')) {
-                        event.preventDefault();
-                    }
-                });
-            });
-        });
-    </script>   
 </body>
 </html>

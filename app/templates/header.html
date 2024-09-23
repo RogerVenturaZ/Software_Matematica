@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<header>
+    <div class="logo">
+        <h1>MatApp</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Página inicial</a></li>
+            <li><a href="{% url 'autor_list' %}">Autor</a></li>
+            <li><a href="{% url 'tema_list' %}">Tema</a></li>
+            <li><a href="{% url 'comentario_list' %}">Comentário</a></li>
+            <li><a href="{% url 'historia_list' %}">História</a></li>
+            <li><a href="{% url 'pergunta_list' %}">Perguntas</a></li>
+            <li><a href="{% url 'resposta_list' %}">Respostas</a></li>
+        </ul>
+    </nav>
+    <div class="upgrade">
+        <a href="/admin">
+            <button>Admin</button>
+        </a>
+    </div>
+</header>

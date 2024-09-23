@@ -1,0 +1,21 @@
+<!-- templates/temadelete.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Tema</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Excluir Tema</h1>
+        <p>Tem certeza de que deseja excluir o tema "{{ object.nome }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirmar Exclusão</button>
+        </form>
+        <a href="{% url 'tema_list' %}">Cancelar</a>
+    </div>
+</body>
+</html>

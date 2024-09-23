@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,245 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Desenvolva um site que capture e reproduza fielmente os elementos visuais presentes na imagem fornecida, enquanto proporciona uma experiência de usuário excelente.">
     <title>Site Matemática Simples</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f9f0; /* Fundo verde muito claro */
-            color: #333;
-        }
-        
         header {
-            background-color: #004d00; /* Verde escuro */
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between; /* Distribui espaço entre itens */
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            flex-wrap: wrap;
+            padding: 15px 0;
         }
-        
+
         .logo {
             flex: 1;
+            margin-left: 185px;
         }
-        
-        .logo h1 {
-            color: #fff;
-            margin: 0;
-            font-size: 24px;
-        }
-        
+
         nav {
             flex: 2;
             display: flex;
             align-items: center;
+            margin-left: -225px;
         }
-        
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 10px;
-        }
-        
-        nav ul li {
-            margin: 0;
-        }
-        
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            display: block;
-            border-radius: 5px;
-            transition: background-color 0.3s, box-shadow 0.3s;
-            background-color: #006400; /* Verde mais claro para botões e links */
-        }
-        
-        nav ul li a:hover {
-            background-color: #004d00; /* Verde escuro quando o mouse passa sobre o link */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
+
         .upgrade {
-            margin-rift: 20px; /* Ajusta a margem para alinhar com o restante dos itens de navegação */
-        }
-        
-        .upgrade button {
-            background-color: #006400; /* Verde mais claro */
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.3s;
-            border-radius: 5px;
-        }
-        
-        .upgrade button:hover {
-            background-color: #004d00; /* Verde escuro ao passar o mouse */
-            transform: scale(1.05);
-        }
-        
-        .intro {
-            background-color: #004d00; /* Verde escuro */
-            padding: 50px;
-            text-align: center;
-            color: #fff;
-        }
-        
-        .features {
-            display: flex;
-            justify-content: flex-start;
-            padding: 50px;
-            flex-direction: row;
-        }
-        
-        .feature-item {
-            text-align: center;
-            width: 30%;
-            margin: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        
-        .icon {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            aspect-ratio: 300 / 350;
-            margin: 0 auto 20px;
-            border-radius: 10px;
-            border: 1px solid transparent;
-            background-size: cover;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .icon.blue {
-            background-color: #3498DB; /* Azul */
-            background-image: url(https://pt.symbolab.com/public/images/graphing.webp);
-        }
-        
-        .icon.green {
-            background-color: #2ECC71; /* Verde */
-            background-image: url(https://pt.symbolab.com/public/images/worksheets.webp);
-        }
-        
-        .icon.orange {
-            background-color: #E67E22; /* Laranja */
-            background-image: url(https://pt.symbolab.com/public/images/word_problems.webp);
-        }
-        
-        .icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        footer {
-            background-color: #004d00; /* Verde escuro */
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
-        
-        main {
-            margin-top: 100px;
-        }
-        
-        @media (max-width: 800px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        
-            nav ul {
-                flex-direction: column;
-                width: 100%;
-                padding: 0;
-                margin: 0;
-            }
-        
-            nav ul li {
-                margin: 5px 0;
-            }
-        
-            .upgrade {
-                margin: 10px;
-                padding-left: 30px;
-                width: 100%;
-                text-align: center;
-            }
-        
-            .upgrade button {
-                width: auto;
-                max-width: 100%;
-            }
-        
-            h2 {
-                font-size: 36px;
-            }
-        
-            .feature-item {
-                width: 100%;
-            }
-        
-            .icon {
-                max-width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h2 {
-                font-size: 28px;
-            }
-        
-            .intro {
-                padding: 30px 20px;
-            }
-        
-            .features {
-                padding: 20px;
-            }
-        
-            .upgrade button {
-                padding: 10px;
-                padding-right: 60px;
-                font-size: 16px;
-            }
+            margin-left: -120px; /* Ajusta a margem para alinhar com o restante dos itens de navegação */
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1>MatApp</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="autores">Autor</a></li>
-                <li><a href="temas">Tema</a></li>
-                <li><a href="comentarios">Comentário</a></li>
-                <li><a href="/historias">História</a></li>
-                <li><a href="perguntas">Perguntas</a></li>
-                <li><a href="respostas">Respostas</a></li>
-            </ul>
-        </nav>
-        <div class="upgrade">
-            <a href="/admin">
-                <button>Admin</button>
-            </a>
-        </div>
-    </header>
+    {% include 'header.html' %}
     <main>
         <section class="intro">
             <h2>Matemática Simples</h2>
@@ -266,20 +53,5 @@
     <footer>
         <p>&copy; 2024 SiteMat. Todos os direitos reservados.</p>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Função para exibir uma mensagem de boas-vindas ao carregar a página
-            function showWelcomeMessage() {
-                alert('Bem-vindo ao Site Matemática Simples!');
-            }
-            showWelcomeMessage();
-        });
-
-        // Função para confirmar antes de sair de uma página
-        window.addEventListener('beforeunload', function(event) {
-            event.preventDefault();
-            event.returnValue = '';
-        });
-    </script>
 </body>
 </html>

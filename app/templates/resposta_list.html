@@ -12,10 +12,9 @@
             color: #333;
         }
         h1 {
-            background-color: #004d00; /* Verde escuro */
-            color: #fff;
+            color: green;
             padding: 20px;
-            margin: 0;
+            margin: 4rem 0 0 0;
             text-align: center;
         }
         .container {
@@ -90,20 +89,19 @@
     </style>
 </head>
 <body>
+    {% include 'header.html' %}
     <h1>Lista de Respostas</h1>
     <div class="container">
         <div class="nav-links">
-            <a href="{% url 'admin_menu' %}">Menu Admin</a> <!-- Link para o menu admin -->
-            <a href="{% url 'resposta_create' %}">Adicionar Nova Resposta</a>
-        </div>
+            <span class="admin-icon"><a href="{% url 'admin:index' %}" title="Administração"><i class="fas fa-cogs"></i> Adicionar Historia</a></span>
+        </div>        
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Texto</th>
-                    <th>Pontuação</th>
+                    <th>Resposta</th>
                     <th>Pergunta</th>
-                    <th>Ações</th>
+                    <th colspan=2>Opções</th>
                 </tr>
             </thead>
             <tbody>
@@ -111,11 +109,10 @@
                 <tr>
                     <td>{{ resposta.id }}</td>
                     <td>{{ resposta.texto }}</td>
-                    <td>{{ resposta.pontuacao }}</td>
-                    <td>{{ resposta.pergunta }}</td>
+                    <td>{{ resposta.pergunta.texto }}</td>
                     <td class="actions">
                         <a href="{% url 'resposta_update' resposta.id %}">Editar</a>
-                        <a href="{% url 'resposta_delete' resposta.id %}" class="delete-link" onclick="return confirmDelete();">Excluir</a>
+                        <a class="delete_link" href="{% url 'resposta_delete' resposta.id %}">Excluir</a>
                     </td>
                 </tr>
                 {% empty %}
@@ -126,11 +123,5 @@
             </tbody>
         </table>
     </div>
-    <script>
-        // Função para confirmar a exclusão de um item
-        function confirmDelete() {
-            return confirm('Tem certeza de que deseja deletar esta resposta?');
-        }
-    </script>
 </body>
 </html>

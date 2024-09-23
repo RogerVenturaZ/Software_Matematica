@@ -49,23 +49,22 @@ class Comentario(models.Model):
     def __str__(self):
         return f'{self.nome} - {self.data}'
 
+
 class Pergunta(models.Model):
     texto = models.TextField()
     pontuacao = models.IntegerField()
-    
+
     class Meta:
         verbose_name_plural = "Perguntas"
-    
+
     def __str__(self):
         return self.texto
 
 class Resposta(models.Model):
     pergunta = models.ForeignKey(Pergunta, on_delete=models.CASCADE, related_name='respostas')
-    texto = models.CharField(max_length=255, help_text="Texto da resposta")
-    correta = models.BooleanField(default=False, help_text="Marca se a resposta está correta")
-    
+    texto = models.CharField(max_length=255, help_text='Texto da resposta')
     class Meta:
         verbose_name_plural = "Respostas"
-    
+
     def __str__(self):
         return self.texto

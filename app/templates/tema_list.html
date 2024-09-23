@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Temas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Adiciona o Font Awesome -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,7 +12,6 @@
             background-color: #f4f4f4;
         }
         h1 {
-            background-color: #333;
             color: #fff;
             padding: 20px;
             margin: 0;
@@ -22,115 +22,76 @@
             margin: auto;
             overflow: hidden;
         }
+        .admin-icon {
+            font-size: 24px;
+            color: #2e8b57; /* Verde escuro */
+            text-align: right;
+            display: block;
+            margin: 20px;
+        }
+        .admin-icon a {
+            text-decoration: none;
+            color: #2e8b57;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .admin-icon a:hover {
+            color: #fff;
+            background-color: #2e8b57;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #2e8b57; /* Verde escuro */
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
         a {
             text-decoration: none;
-            color: #333;
+            color: #2e8b57; /* Verde escuro */
             padding: 5px 10px;
             border-radius: 4px;
             transition: background-color 0.3s, color 0.3s;
         }
         a:hover {
-            background-color: #333;
+            background-color: #2e8b57; /* Verde escuro */
             color: #fff;
         }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-        li {
-            background: #fff;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .actions {
-            display: flex;
-            gap: 10px;
-        }
-        .actions a {
-            font-size: 14px;
-        }body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            background-color: #4CAF50; /* Cor de fundo verde */
-            color: #fff;
-            padding: 20px;
-            margin: 0;
-            text-align: center;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        a {
-            text-decoration: none;
-            color: #4CAF50; /* Cor verde dos links */
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        a:hover {
-            background-color: #4CAF50; /* Cor verde ao passar o mouse */
-            color: #fff;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-        li {
-            background: #fff;
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .actions {
-            display: flex;
-            gap: 10px;
-        }
-        .actions a {
-            font-size: 14px;
-        }   
     </style>
 </head>
 <body>
+    {% include 'header.html' %}
     <h1>Lista de Temas</h1>
-    <a href="{% url 'tema_create' %}">Adicionar Novo Tema</a>
-    <ul>
-        {% for tema in temas %}
-            <li>
-                <a href="{% url 'tema_detail' tema.pk %}">{{ tema.nome }}</a> - 
-                <a href="{% url 'tema_update' tema.pk %}">Editar</a> - 
-                <a href="{% url 'tema_delete' tema.pk %}">Deletar</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.actions a').forEach(link => {
-                link.addEventListener('click', event => {
-                    if (link.getAttribute('href').includes('delete')) {
-                        if (!confirm('Tem certeza de que deseja deletar este item?')) {
-                            event.preventDefault();
-                        }
-                    }
-                });
-            });
-        });
-    </script>
+    <div class="container">
+        <span class="admin-icon"><a href="{% url 'admin:index' %}" title="Administração"><i class="fas fa-cogs"></i> Adicionar Tema</a></span>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th colspan=2>Opções</th> <!-- Coluna de deletar sem rótulo -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for tema in temas %}
+                    <tr>
+                        <td><a href="{% url 'tema_detail' tema.pk %}">{{ tema.nome }}</a></td>
+                        <td><a href="{% url 'tema_update' tema.pk %}">Editar</a></td>
+                        <td><a href="{% url 'tema_delete' tema.pk %}">Deletar</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

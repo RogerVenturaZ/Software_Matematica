@@ -1,6 +1,6 @@
 # myapp/forms.py
 from django import forms
-from .models import Autor, Tema, Historia, Pergunta, Resposta, Comentario
+from .models import *
 
 class AutorForm(forms.ModelForm):
     class Meta:
@@ -65,18 +65,18 @@ class PerguntaForm(forms.ModelForm):
 class RespostaForm(forms.ModelForm):
     class Meta:
         model = Resposta
-        fields = ['texto', 'correta']
+        fields = ['pergunta', 'texto']
         widgets = {
+            'pergunta': forms.Select(attrs={'class': 'form-control'}),
             'texto': forms.TextInput(attrs={'placeholder': 'Digite o texto da resposta...'}),
-            'correta': forms.CheckboxInput(),
         }
         labels = {
+            'pergunta': 'Pergunta',
             'texto': 'Resposta',
-            'correta': 'Correta',
         }
         help_texts = {
+            'pergunta': 'Selecione a pergunta.',
             'texto': 'Insira o texto da resposta.',
-            'correta': 'Marque se esta resposta é a correta.',
         }
 
 class ComentarioForm(forms.ModelForm):
@@ -89,4 +89,5 @@ class ComentarioForm(forms.ModelForm):
         labels = {
             'nome': 'Nome',
             'mensagem': 'Comentário',
+            'data': 'Data',
         }
